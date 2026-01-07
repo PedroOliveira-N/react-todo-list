@@ -1,6 +1,6 @@
+import { useState } from "react"
 import { ChecklistsWrapper } from "./components/ChecklistsWrapper"
 import { Container } from "./components/Container"
-import Dialog from "./components/Dialog/Index"
 import { FabButton } from "./components/FabButton"
 import { Footer } from "./components/Footer"
 import { Header } from "./components/Header"
@@ -9,6 +9,7 @@ import { IconPlus, IconSchool } from "./components/icons"
 import { SubHeading } from "./components/SubHeading"
 import { ToDoItem } from "./components/ToDoItem"
 import { ToDoList } from "./components/ToDoList"
+import Dialog from "./components/Dialog"
 
 const todos = [
   {
@@ -53,6 +54,11 @@ const completed = [
 
 function App() {
 
+  const [showDialog , setShowDialog] = useState(false)
+  const toggleDialog = () => {
+    setShowDialog(!showDialog)
+  }
+
   return (
     <main>
       <Container>
@@ -62,7 +68,7 @@ function App() {
           </Heading>
         </Header>
 
-        <Dialog />
+        
 
         <ChecklistsWrapper>
           <SubHeading>Para estudar</SubHeading>
@@ -82,7 +88,11 @@ function App() {
           </ToDoList>
 
           <Footer>
-            <FabButton>
+            <Dialog isOpen={showDialog} onClose={toggleDialog}>
+              <p>This modal dialog has a groovy backdrop!</p>
+            </Dialog>
+            
+            <FabButton onClick={toggleDialog}>
               <IconPlus />
             </FabButton>
           </Footer>
