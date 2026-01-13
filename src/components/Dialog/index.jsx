@@ -36,7 +36,10 @@ export default function Dialog({ isOpen, onClose, children }) {
           </button>
         </div>
 
-        {children}
+        <div className="body">
+          {children}
+        </div>
+
       </dialog>
     </>
   );
